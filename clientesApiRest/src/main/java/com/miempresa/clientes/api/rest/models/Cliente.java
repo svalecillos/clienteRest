@@ -52,9 +52,10 @@ public class Cliente implements Serializable{
 	
 	private String foto;
 	
+	@NotNull(message = "La region no puede ser vacia")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="region_id")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})//Ignora estos atributos
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})//Ignora estos atributos, son propios del proxy de region ya que se esta usando fetch Lazy
 	private Region region;
 	
 	//De forma automatica crea la fecha

@@ -12,7 +12,8 @@ import com.miempresa.clientes.api.rest.models.Cliente;
 
 public interface IClienteDao extends JpaRepository<Cliente, Long>{
 	
-	@Query("")
+	//Conectamos con el objeto region
+	@Query("from Region")
 	public List<Region> findAllRegiones();
 	
 }

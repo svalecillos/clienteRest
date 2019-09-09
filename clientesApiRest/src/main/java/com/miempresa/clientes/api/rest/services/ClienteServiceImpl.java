@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.miempresa.clientes.api.rest.dao.IClienteDao;
 import com.miempresa.clientes.api.rest.models.Cliente;
+import com.miempresa.clientes.api.rest.models.Region;
 
 @Service
 public class ClienteServiceImpl implements IClienteService{
@@ -31,23 +32,26 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Cliente findById(Long id) {
-		// TODO Auto-generated method stub
 		//Si encuentra al cliente, lo retorna sino retorna un null
 		return clienteDao.findById(id).orElse(null);
 	}
 
 	@Override
 	public Cliente save(Cliente cliente) {
-		// TODO Auto-generated method stub
 		return clienteDao.save(cliente);
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
 		clienteDao.deleteById(id);
-		
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<Region> findAllRegiones() {
+		return clienteDao.findAllRegiones();
+	}
+	
 }
