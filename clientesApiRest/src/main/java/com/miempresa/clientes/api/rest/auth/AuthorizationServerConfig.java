@@ -40,7 +40,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override 
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory().withClient("angularapp")
-		.secret(passwordEncoder.encode("1234"))
+		.secret(passwordEncoder.encode("12345"))
 		.scopes("read", "write")//Alcanze, es el permiso de la aplicacion, de lectura y escritura
 		.authorizedGrantTypes("password", "refresh_token")//Credenciales del usuario que va a iniciar session en el backeng
 		.accessTokenValiditySeconds(3600)													//Con refresh token vamos a obtener un token renovado, sin volver a inicia sessiona
