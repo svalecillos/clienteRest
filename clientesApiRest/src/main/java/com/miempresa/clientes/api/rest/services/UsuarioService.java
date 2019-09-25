@@ -21,7 +21,7 @@ import com.miempresa.clientes.api.rest.models.Usuario;
 
 //UserDetailsService es una interfaz de spring security
 @Service//Con esta anotacion la registramos como beans de spring en el contenedor
-public class UsuarioService implements UserDetailsService{
+public class UsuarioService implements IUsuarioService, UserDetailsService{
 	
 	private Logger logger = LoggerFactory.getLogger(UsuarioService.class);
 	
@@ -47,6 +47,11 @@ public class UsuarioService implements UserDetailsService{
 				.collect(Collectors.toList());//Convertimos el strem en una coleccion
 		
 		return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEnable(), true, true, true, authorities);
+	}
+
+	@Override
+	public Usuario findByUsername(String username) {
+		return usuarioDao.findByUsername(username);
 	}
 
 }
