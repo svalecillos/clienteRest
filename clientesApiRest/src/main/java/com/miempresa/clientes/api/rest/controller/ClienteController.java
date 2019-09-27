@@ -58,7 +58,7 @@ public class ClienteController {
 	}
 	
 	//Puede retornar cualquier tipo de objeto
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})//Rol permitido para ingresar a este metodo
 	@GetMapping("/clientes/{id}")
 	public ResponseEntity<?> show(@PathVariable Long id) {
 		
@@ -84,7 +84,7 @@ public class ClienteController {
 	
 	//Con la anotacion @Valid, validamos los campos de la tabla que viene de la anotacion @RequestBody
 	//Con el objeto BindinResult podemos saber los errores que ocurren al momento de validar los campos de la entidad
-	@Secured("ROLE_ADMIN")
+	@Secured("ROLE_ADMIN")//Rol permitido para ingresar a este metodo
 	@PostMapping("/clientes")
 	public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result) {
 		Cliente clienteNew = null;
@@ -118,7 +118,7 @@ public class ClienteController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
-	@Secured("ROLE_ADMIN")
+	@Secured("ROLE_ADMIN")//Rol permitido para ingresar a este metodo
 	@PutMapping("/clientes/{id}")
 	public ResponseEntity<?> update(@Valid @RequestBody Cliente cliente, BindingResult result, @PathVariable Long id) {
 		

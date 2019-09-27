@@ -10,6 +10,7 @@ import com.miempresa.clientes.api.rest.models.Region;
 
 import com.miempresa.clientes.api.rest.models.Cliente;
 
+//Data Access Object
 public interface IClienteDao extends JpaRepository<Cliente, Long>{
 	
 	//Conectamos con el objeto region
