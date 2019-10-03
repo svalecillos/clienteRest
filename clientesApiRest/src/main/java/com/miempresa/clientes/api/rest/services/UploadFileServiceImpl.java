@@ -28,6 +28,7 @@ public class UploadFileServiceImpl implements IUploadFileService {
 	public Resource cargar(String nombreFoto) throws MalformedURLException {
 		
 		Path rutaArchivo = getPath(nombreFoto);
+		log.info("ruta de archivo al momento de cargar: "+rutaArchivo);
 		log.info(rutaArchivo.toString());
 		
 		Resource recurso = new UrlResource(rutaArchivo.toUri());
@@ -50,8 +51,9 @@ public class UploadFileServiceImpl implements IUploadFileService {
 		
 		//Genera el nombre del archivo
 		String nombreArchivo = UUID.randomUUID().toString() + "_" + archivo.getOriginalFilename().replace("  ", "");
+		
 		Path rutaArchivo = getPath(nombreArchivo);
-		log.info(rutaArchivo.toString());
+		log.info("ruta del archivo "+rutaArchivo.toString());
 		
 		Files.copy(archivo.getInputStream(), rutaArchivo);
 		

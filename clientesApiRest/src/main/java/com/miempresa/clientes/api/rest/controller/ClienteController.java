@@ -1,5 +1,6 @@
 package com.miempresa.clientes.api.rest.controller;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.List;
@@ -198,8 +199,8 @@ public class ClienteController {
 	}
 	
 	//Metodo para subir una imagen
-	@PostMapping("/clientes/upload")
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@PostMapping("/clientes/upload")
 	public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id){
 		
 		Map<String, Object> response = new HashMap<>();
@@ -212,7 +213,7 @@ public class ClienteController {
 			
 			try {
 				nombreArchivo = uploadService.copiar(archivo);
-			} catch (Exception e) {
+			} catch (IOException e) {
 				response.put("mensaje", "Error al subir la imagen del clientw");
 				response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);

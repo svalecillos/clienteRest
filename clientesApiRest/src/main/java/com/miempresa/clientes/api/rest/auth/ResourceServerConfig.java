@@ -27,11 +27,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/clientes", "/api/clientes/page/**", "/api/uploads/img**","/images/**").permitAll()//Solamente ver el listado de clientes por get
-		/*.antMatchers(HttpMethod.GET, "/api/clientes/{id}").hasAnyRole("USER", "ADMIN")//Sele puede agregar mas de un rol, permisos para el usuario y administrador
-		.antMatchers(HttpMethod.POST, "/api/clientes/upload").hasAnyRole("USER", "ADMIN")
-		.antMatchers(HttpMethod.POST, "/api/clientes").hasRole("ADMIN")//PErmisos solo para el admin
-		.antMatchers("/api/clientes/**").hasRole("ADMIN")*/
+		http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/clientes", "/api/clientes/page/**", "/api/uploads/**","/images/**").permitAll()//Solamente ver el listado de clientes por get
+		
 		//ESTE PROCESO SE HARA EN EL CONTROLADOR USANDO LAS ANOTACIONES
 		.anyRequest().authenticated()
 		.and().cors().configurationSource(corsConfigurationSource());
