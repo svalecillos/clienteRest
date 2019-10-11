@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.miempresa.clientes.api.rest.dao.IClienteDao;
+import com.miempresa.clientes.api.rest.dao.IFacturaDao;
+import com.miempresa.clientes.api.rest.dao.IProductoDao;
 import com.miempresa.clientes.api.rest.models.Cliente;
+import com.miempresa.clientes.api.rest.models.Factura;
+import com.miempresa.clientes.api.rest.models.Producto;
 import com.miempresa.clientes.api.rest.models.Region;
 
 @Service
@@ -18,6 +22,12 @@ public class ClienteServiceImpl implements IClienteService{
 	
 	@Autowired
 	private IClienteDao clienteDao;
+	
+	@Autowired
+	private IFacturaDao facturaDao;
+	
+	@Autowired
+	private IProductoDao productoDao;
 	
 	@Override
 	//@Transactional(readOnly = true) //Metodo transacional
@@ -52,6 +62,31 @@ public class ClienteServiceImpl implements IClienteService{
 	@Transactional(readOnly = true)
 	public List<Region> findAllRegiones() {
 		return clienteDao.findAllRegiones();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Factura findFacturaById(Long id) {
+		
+		return facturaDao.findById(id).orElse(null);//Si no encuentra la factura por id retorna un null
+	}
+
+	@Override
+	@Transactional
+	public Factura saveFactura(Factura factura) {
+		return facturaDao.save(factura);
+	}
+
+	@Override
+	@Transactional
+	public void deleteFacturaById(Long id) {
+		facturaDao.deleteById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Producto> findProductoByNombre(String termino) {
+		return productoDao.findByNombreContainingIgnoreCase(termino);
 	}
 	
 }
