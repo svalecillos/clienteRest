@@ -59,7 +59,7 @@ public class ClienteController {
 	}
 	
 	//Puede retornar cualquier tipo de objeto
-	//@Secured({"ROLE_ADMIN", "ROLE_USER"})//Rol permitido para ingresar a este metodo
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})//Rol permitido para ingresar a este metodo
 	@GetMapping("/clientes/{id}")
 	public ResponseEntity<?> show(@PathVariable Long id) {
 		

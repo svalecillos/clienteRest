@@ -30,7 +30,7 @@ public class ItemFactura implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "producto_id")
 	private Producto producto;
-	
+		
 	public Long getId() {
 		return id;
 	}
